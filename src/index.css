@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 215 30% 5%;
+  --foreground: 210 40% 95%;
+  --card: 220 30% 10%;
+  --card-foreground: 210 40% 95%;
+  --popover: 220 30% 10%;
+  --popover-foreground: 210 40% 95%;
+  --primary: 160 100% 45%;
+  --primary-foreground: 215 30% 5%;
+  --secondary: 220 25% 15%;
+  --secondary-foreground: 210 40% 95%;
+  --muted: 220 25% 15%;
+  --muted-foreground: 215 20% 55%;
+  --accent: 160 100% 45%;
+  --accent-foreground: 215 30% 5%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 220 20% 12%;
+  --input: 220 25% 15%;
+  --ring: 160 100% 45%;
+  --radius: 8px;
+  --sidebar-background: 215 30% 5%;
+  --sidebar-foreground: 210 40% 95%;
+  --sidebar-primary: 160 100% 45%;
+  --sidebar-primary-foreground: 215 30% 5%;
+  --sidebar-accent: 220 25% 15%;
+  --sidebar-accent-foreground: 210 40% 95%;
+  --sidebar-border: 220 20% 12%;
+  --sidebar-ring: 160 100% 45%;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero texture */
+.hero-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.015) 80px),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.015) 80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 24px hsl(160 100% 45% / 0.4); }
+  50%       { box-shadow: 0 0 48px hsl(160 100% 45% / 0.7); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(10px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fadeUp   { animation: fadeUp 0.6s ease both; }
+.animate-float    { animation: float 4s ease-in-out infinite; }
+.animate-bounce-arrow { animation: bounce-arrow 1.5s ease-in-out infinite; }
+.animate-marquee  { animation: marquee 30s linear infinite; }
+.animate-pulseGlow { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--accent)/0.4); border-radius: 3px; }
+
+/* Carousel snap */
+.carousel-container {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  backdrop-filter: blur(8px);
+}
+
+/* Masonry */
+.masonry-grid {
+  columns: 3;
+  column-gap: 16px;
+}
+@media (max-width: 1024px) {
+  .masonry-grid { columns: 2; }
+}
+@media (max-width: 640px) {
+  .masonry-grid { columns: 1; }
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+/* Accent gradient text */
+.gradient-text {
+  background: linear-gradient(to right, #ffffff, #ffffff, hsl(160 100% 45%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Map marker pulse */
+@keyframes markerPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.5; }
+}
+.marker-pulse { animation: markerPulse 2s ease-in-out infinite; }
+
+/* Video section play button */
+.play-btn-glass {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
